@@ -1,0 +1,109 @@
+:root{
+    --bg: #666;
+    --pacman-yellow: #fff000;
+    --dot: #f9f791;
+}
+.oi-regular {
+  font-family: "Oi", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+body {
+      background-image: url(img/imagem\ de\ fundo.png);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    /* Botão Meu Portfólio */
+    .portfolio-btn {
+      background-color: #2e6dff;
+      color: #ffef0c;
+      font-size: 5rem;
+      font-weight: bold;
+      padding: 60px 60px;
+      border-radius: 12px;
+      cursor: pointer;
+      box-shadow: 10px 20px 0px #aaa;
+      user-select: none;
+      font-family: "Oi", serif;
+      font-weight: 400;
+      font-style: normal;
+      transition: 0.6s;
+    }
+
+    .portfolio-btn:hover {
+      background-color: #001a61;
+      padding: 70px 70px;
+    }
+
+/* Container */
+    .game {
+      margin-top: 80px;
+      display: flex;
+      align-items: center;
+      position: relative;
+    }
+
+    /* Pac-Man */
+    .pacman {
+      width: 80px;
+      height: 80px;
+      background: yellow;
+      border-radius: 50%;
+      position: absolute;
+      left: 0;
+      display: none;
+    }
+
+    /* Boca animada */
+    .pacman::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: transparent; /* ✅ não tampa o amarelo */
+    border-radius: 50%;
+    clip-path: polygon(0 0, 100% 50%, 0 100%);
+    border-left: 80px solid #eeff00; /* "morde" usando o fundo */
+    animation: mouth 0.4s infinite;
+    }
+
+    @keyframes mouth {
+      0%   { clip-path: polygon(0 0, 100% 50%, 0 100%); }
+      50%  { clip-path: polygon(0 25%, 100% 50%, 0 75%); }
+      100% { clip-path: polygon(0 0, 100% 50%, 0 100%); }
+    }
+
+    /* Bolinhas */
+    .dots {
+      display: flex;
+      gap: 30px;
+      margin-left: 100px;
+    }
+
+    .dot {
+      width: 20px;
+      height: 20px;
+      background: #ffff99;
+      border-radius: 50%;
+    }
+
+    .dot.eaten {
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+    /* Movimento do Pac-Man */
+    @keyframes move {
+      from { left: 0; }
+      to   { left: 500px; } /* ajuste conforme o nº de bolinhas */
+    }
+
+    .pacman.active {
+      display: block;
+      animation: move 4s linear forwards, mouth 0.4s infinite;
+    }
